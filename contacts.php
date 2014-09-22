@@ -1,4 +1,7 @@
-<?php get_header();?>
+<?php
+/*
+ Template Name: contacts
+*/ get_header();?>
 
 <div class="main-container">
 	<div id="nav-container">

@@ -28,10 +28,11 @@ if (have_posts()) :
 			<?php echo the_content();?>
 			<div class="clear"></div>
 		</div>
-		<div id="gallery" class="box">
+		
             	<?php
 					$img_urls = get_post_image_urls($post);
 					if($img_urls) :
+						echo '<div id="gallery" class="box">';
 						foreach ($img_urls as $img_url) :
 							echo '<li>';
 						
@@ -43,10 +44,11 @@ if (have_posts()) :
 							echo '</li>';
 						endforeach;
 						echo '</ul>';
+						
+						echo '<br class="clear" /></div>';
 					endif;
 				?>
-			<br class="clear" />
-		</div>
+
 	</div>
 </div>
 
