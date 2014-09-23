@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			trim($_POST[$field]);
 
 			if (!isset($_POST[$field]) || empty($_POST[$field]))
-				$error_msg .= "Please fill in all the required fields and submit again.\r\n";
+				$error_msg .= "Моля попълнете всички необходими полета.\r\n";
 		}
 
 		if (!preg_match("/^[a-zA-Z-'\s]*$/", stripslashes($_POST['yourname'])))
@@ -77,11 +77,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			$error_msg .= "That is not a valid e-mail address.\r\n";
 		if (!empty($_POST['url']) && !preg_match('/^(http|https):\/\/(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+)(:(\d+))?\/?/i', $_POST['url']))
 			$error_msg .= "Invalid website url.\r\n";
-
+		if( function_exists('cptch_check_custom_form') && cptch_check_custom_form() !== true ) 
+			$error_msg =  'Моля въведете числото';
+		
 		if ($error_msg == NULL && $points <= $maxPoints) {
 			$subject = "Automatic Form Email";
 
-			$message = "You received this e-mail message through your website: \n\n";
+			$message = "Този мейл е изпратено от сайта Ви: \n\n";
 			foreach ($_POST as $key => $val) {
 				$message .= ucwords($key) . ": " . clean($val) . "\r\n";
 			}
@@ -101,15 +103,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 			if (mail($yourEmail, $subject, $message, $headers)) 
 			{
-				$result = 'Your mail was successfully sent.';
+				$result = 'Съобщението ви беше одобрено за изпращане';
 				$disable = true;	
 			} else {
 
-				$error_msg = 'Your mail could not be sent this time. [' . $points . ']';
+				$error_msg = 'Събщението ви няма да бъде изпратено. [' . $points . ']';
 			}
 		} else {
 			if (empty($error_msg))
-				$error_msg = 'Your mail looks too much like spam, and could not be sent this time. [' . $points . ']';
+				$error_msg = 'Съобщението ви няма да бъде изпратено защото прилича на спам. [' . $points . ']';
 		}
 }
 function get_data($var)
@@ -168,22 +170,32 @@ get_header();
 
 					<p>
 						<input type="text" name="yourname" id="yourname"
-							value="<?php get_data("yourname"); ?>" size="22" /> <label for="yourname">
-							<small>Name (required)</small>
+							value="<?php get_data("yourname"); ?>" size="22" /> <label
+							for="yourname"> <small>Име (задължително)</small>
 						</label>
 					</p>
 					<p>
 						<input type="text" name="email" id="email"
 							value="<?php get_data("email"); ?>" size="22" /> <label
-							for="email"> <small>Mail (required)</small>
+							for="email"> <small>Мейл (задължително)</small>
 						</label>
 					</p>
 					<p>
 						<textarea name="comments" id="comments" rows="10"><?php get_data("comments"); ?></textarea>
-						<label for="comments" style="display: none;"> <small>Comment
-								(required)</small>
+						<label for="comments" style="display: none;"> <small>Съобщение
+								(задължително)</small>
 						</label>
 					</p>
+					<!-- captcha -->
+					<p>
+					<?php
+					if (function_exists ( 'cptch_display_captcha_custom' )) {
+						echo "<input type='hidden' name='cntctfrm_contact_action' value='true' />";
+						echo cptch_display_captcha_custom ();
+					}
+					?> 					
+					</p>
+					<br>
 					<p>
 						<input name="submit" type="submit" id="submit" value="Submit Form"
 							<?php if (isset($disable) && $disable === true) echo ' disabled="disabled"'; ?> />
