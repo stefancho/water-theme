@@ -10,6 +10,6 @@
 <body>
 <div class="main-container">
 	<header>
-		<h1><a href="http://localhost/telerikcms/">лидер динамик</a></h1>
+		<h1><a href="<?=home_url()?>">лидер динамик</a></h1>
 	</header>
 </div>
