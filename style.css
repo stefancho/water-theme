@@ -28,7 +28,9 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p,
 	th, td, article, aside, canvas, details, figcaption, figure, footer,
 	header, hgroup, menu, nav, section, summary, time, mark, audio, video {
 	border: 0;
+
 	font-size: 115%;
+
 	vertical-align: baseline;
 	margin: 0;
 	padding: 0
