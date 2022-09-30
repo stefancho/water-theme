@@ -1,6 +1,7 @@
+
 @CHARSET "UTF-8";
 /*
-	Theme Name: water-theme
+	Theme Name: water-them
 	Theme URI: https://github.com/stefancho/water-theme
 	Author: stef
 **/
@@ -29,7 +30,8 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p,
 	header, hgroup, menu, nav, section, summary, time, mark, audio, video {
 	border: 0;
 
-	font-size: 115%;
+
+	font-size: 120%;
 
 	vertical-align: baseline;
 	margin: 0;
