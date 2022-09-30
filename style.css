@@ -1,7 +1,13 @@
+
 @CHARSET "UTF-8";
 /*
+<<<<<<< HEAD
 	Theme Name: water-theme
-	Theme URI: https://github.com/stefancho/water-them
+	Theme URI: https://github.com/stefancho/water-theme
+=======
+	Theme Name: water-them
+	Theme URI: https://github.com/stefancho/water-theme
+>>>>>>> c624f829bfe73d6a3f8c4858d06c0afa23171d22
 	Author: stef
 **/
 
@@ -28,7 +34,10 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p,
 	th, td, article, aside, canvas, details, figcaption, figure, footer,
 	header, hgroup, menu, nav, section, summary, time, mark, audio, video {
 	border: 0;
-	font-size: 100%;
+
+
+	font-size: 120%;
+
 	vertical-align: baseline;
 	margin: 0;
 	padding: 0
